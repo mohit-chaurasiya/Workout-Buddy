@@ -1,6 +1,7 @@
 // Importing express 
 const express = require('express')
 const dotenv = require('dotenv')
+const workoutRoutes = require('./routes/workout')
 
 dotenv.config()
 
@@ -8,6 +9,7 @@ dotenv.config()
 const app = express();
 
 // middleware
+app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path,req.method);
     next();
@@ -20,6 +22,9 @@ app.get('/',(req,res)=>{
         message : 'welcome to our application'
     })
 })
+
+app.use('/api/workouts/',workoutRoutes)
+
 
 // Port num
 const PORT = process.env.PORT;
