@@ -1,4 +1,6 @@
 const express = require('express')
+const workoutModel = require('../models/workoutModel')
+const { getAllWorkout, createWorkout, getWorkoutById, deleteWorkoutById, updateWorkoutById } = require('../controllers/workout-controller')
 
 const router = express.Router()
 
@@ -10,11 +12,7 @@ const router = express.Router()
  * Parameter: None
  */
 
-router.get('/',(req,res)=>{
-    res.json({
-        msg: "Get all workouts"
-    })
-})
+router.get('/',getAllWorkout)
 
 /**
  * Routes: /api/workouts/:id
@@ -24,11 +22,7 @@ router.get('/',(req,res)=>{
  * Parameter: id
  */
 
-router.get('/:id',(req,res)=>{
-    res.json({
-        msg: "Get a single workouts by its id"
-    })
-})
+router.get('/:id',getWorkoutById)
 
 /**
  * Routes: /api/workouts
@@ -38,11 +32,7 @@ router.get('/:id',(req,res)=>{
  * Parameter: None
  */
 
-router.post('/',(req,res)=>{
-    res.json({
-        msg: "Post a new workout"
-    })
-})
+router.post('/',createWorkout)
 
 /**
  * Routes: /api/workouts/:id
@@ -52,11 +42,7 @@ router.post('/',(req,res)=>{
  * Parameter: Id
  */
 
-router.delete('/:id',(req,res)=>{
-    res.json({
-        msg: "Delete a workout by its id"
-    })
-})
+router.delete('/:id',deleteWorkoutById)
 
 /**
  * Routes: /api/workouts/:id
@@ -66,10 +52,6 @@ router.delete('/:id',(req,res)=>{
  * Parameter: Id
  */
 
-router.patch('/:id',(req,res)=>{
-    res.json({
-        msg: "Update a workout by its id"
-    })
-})
+router.patch('/:id', updateWorkoutById)
 
 module.exports = router
