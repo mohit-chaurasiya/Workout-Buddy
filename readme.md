@@ -9,10 +9,11 @@ N: NodeJs (Backend)
 
 # Backend:
 
-npm init -y
-npm i express
-npm i -g nodemon
-npm i dotenv
+npm init -y, 
+npm i express, 
+npm i -g nodemon, 
+npm i dotenv, 
+npm i mongoose
 
 ## Running :-
 

@@ -1,35 +1,44 @@
-// Importing express 
-const express = require('express')
-const dotenv = require('dotenv')
-const workoutRoutes = require('./routes/workout')
+// Importing express
+const express = require("express");
+const dotenv = require("dotenv");
+const workoutRoutes = require("./routes/workout");
+const mongoose = require("mongoose");
 
-dotenv.config()
+dotenv.config();
 
 //  express app
 const app = express();
 
 // middleware
-app.use(express.json())
+app.use(express.json());
 app.use((req, res, next) => {
-    console.log(req.path,req.method);
-    next();
-
-})
+  console.log(req.path, req.method);
+  next();
+});
 
 // Routes  (http://localhost:4000/)
-app.get('/',(req,res)=>{
-    res.json({
-        message : 'welcome to our application'
-    })
+app.get("/", (req, res) => {
+  res.json({
+    message: "welcome to our application",
+  });
+});
+
+app.use("/api/workouts/", workoutRoutes);
+
+// Connect to Database
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen for request
+app.listen(PORT, () => {
+  console.log(`Server up and runing at : http://localhost:${PORT} & connected to our Db`);
 })
-
-app.use('/api/workouts/',workoutRoutes)
-
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 // Port num
 const PORT = process.env.PORT;
 
-// listen for request
-app.listen(PORT,()=>{
-    console.log(`Server up and runing at : http://localhost:${PORT}`)
-})
+
