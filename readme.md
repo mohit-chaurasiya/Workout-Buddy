@@ -26,3 +26,7 @@ Post /workouts --> Create a new workout docs
 GET /workouts/:id --> Get a single workout doc
 DELETE /workouts/:id --> Deletes a singe workouts
 PATCH /workouts/:id --> Updates a singe workout
+
+
+# Frontend :- 
+  npx create-react-app frontend
